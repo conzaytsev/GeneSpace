@@ -23,28 +23,29 @@ Importing the module:
     import genespace
 
 Organism Subspace can be created based on the nucleotide / codon / codon pair frequencies:
+nu is a parameter for the OneClassSVM, which defines the maximum fraction of genes that would not fit inside the subspace.
 
-    model = genespace.NucleotideSubspace(path_to_dataset, 0.1)
-
-
-    model = genespace.CodonSubspace(path_to_dataset, 0.1)
-
-
-    model = genespace.CodonPairSubspace(path_to_dataset, 0.1)
+    model = genespace.NucleotideSubspace(path_to_dataset, nu=0.1)
+    model = genespace.CodonSubspace(path_to_dataset, nu=0.1)
+    model = genespace.CodonPairSubspace(path_to_dataset, nu=0.1)
         
-To use the Codon Productivity model:
+To show the equation for the subspace boundary:
 
-    model = cei.CodonProductivity(path_to_dataset)
+    model.hyperplane
         
-In order to use the default dataset for E. Coli ATCC 25922 leave the brackets empty.
+Calculate the estimate for the subspace volume:
         
-    model = cei.CodonExpressionIndex()
-    model = cei.CodonProductivity()
+    model.volume()
 
-Codon scores for each of the models as a dict:
+Calculate the fraction of the training genes that fit inside the subspace:
 
-    model.scores
+    model.probability()
         
-Predict number of protein copies per cell based on the nucleotide sequence:
+Calculate the distance from a nucleotide sequence to the edge of the subspace:
+Positive values indicate that the sequence is inside the subspace, negative - on the outside.
 
-    model.predict('ATG...')
+    model.distance('ATG...')
+
+Calculate the distance from a nucleotide sequence to the center of the Gene Space:
+
+    model.center_distance('ATG...')
