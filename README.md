@@ -26,7 +26,9 @@ Organism Subspace can be created based on the nucleotide / codon / codon pair fr
 
     model = genespace.NucleotideSubspace(path_to_dataset, 0.1)
 
+
     model = genespace.CodonSubspace(path_to_dataset, 0.1)
+
 
     model = genespace.CodonPairSubspace(path_to_dataset, 0.1)
         
