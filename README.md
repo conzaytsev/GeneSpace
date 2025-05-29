@@ -5,37 +5,30 @@ Python module for analysis of gene sequences.
 `Python >3.9`, `numpy`, `scikit-lean`
 
 ## Dataset
-This model requires protein expression data for a specific organism.
-Dataset should be presented as a .csv file containing three columns: protein ID, number of protein copies per cell, gene sequence.
-First line of the table is reserved for the header.
-
-
-Example:
-
-    Protein ID;Protein copies;Gene sequence
-    P69776;38022.530250746298;ATGAAAGCTACTAAACTGGTACTGGGCGCGGTAATCCTGGGTTCTACTCTGCTGGCAGGTTGCTCCAGCAACGCTAAAATCGATCAGCTGTCTTCTGACGTTCAGACTCTGAACGCTAAAGTTGACCAGCTGAGCAACGACGTGAACGCAATGCGTTCCGACGTTCAGGCTGCTAAAGATGACGCAGCTCGTGCTAACCAGCGTCTGGACAACATGGCTACTAAATACCGCAAGTAA
-    P0AG51;4376.7908013480401;ATGGCAAAGACTATTAAAATTACTCAAACCCGCAGTGCAATCGGTCGTCTGCCGAAACACAAGGCAACGCTGCTTGGCCTGGGTCTGCGTCGTATTGGTCACACCGTAGAGCGCGAGGATACTCCTGCTATTCGCGGTATGATCAACGCGGTTTCCTTCATGGTTAAAGTTGAGGAGTAA
-    P0A7Q6;3802.6818971891998;ATGAAAGTTCGTGCTTCCGTCAAGAAATTATGCCGTAACTGCAAAATCGTTAAGCGTGATGGTGTCATCCGTGTGATTTGCAGTGCCGAGCCGAAGCATAAACAGCGCCAAGGCTGA
-
-The provided dataset for E. Coli ATCC 25922 is based on the experimental data by Jacek R. Wiśniewski and Dariusz Rakus (Quantitative analysis of the Escherichia coli proteome, https://doi.org/10.1016/j.dib.2014.08.004).
+This model requires a gene dataset for the specific organism.
+Dataset can be either presented as a fasta file with gene sequences, or as a .csv file containing three columns: protein ID, expression number, gene sequence. This data format is compatible with the CodonExpressionIndex module https://github.com/conzaytsev/CodonExpressionIndex.
 
 ## Installation
 From PyPI:
 
-    pip install cei
+    pip install genespace
     
 For the latest development version:
     
-    pip install git+https://github.com/conzaytsev/CodonExpressionIndex.git
+    pip install git+https://github.com/conzaytsev/GeneSpace.git
 
 ## Quickstart
 Importing the module:
 
-    import cei
+    import genespace
 
-To use the Codon Expression Index model:
+Organism Subspace can be created based on the nucleotide / codon / codon pair frequencies:
 
-    model = cei.CodonExpressionIndex(path_to_dataset)
+    model = genespace.NucleotideSubspace(path_to_dataset, 0.1)
+
+    model = genespace.CodonSubspace(path_to_dataset, 0.1)
+
+    model = genespace.CodonPairSubspace(path_to_dataset, 0.1)
         
 To use the Codon Productivity model:
 
