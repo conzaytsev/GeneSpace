@@ -26,12 +26,17 @@ Organism specific Subspaces can be created based on the nucleotide / codon / cod
 nu is a parameter for the OneClassSVM function, which defines the maximum fraction of genes left outside the subspace.
 
     model = genespace.NucleotideSubspace(path_to_dataset, nu=0.1)
+
 or
+
     model = genespace.CodonSubspace(path_to_dataset, nu=0.1)
+
 or
+
     model = genespace.CodonPairSubspace(path_to_dataset, nu=0.1)
         
 To get the hyperplane coefficients for the subspace boundary:
+
 Data format: [[B], [A_1, A2, A3,..., An]] for the hyperplane equation A1X1 + A2X2 + A3X3 + ... + AnXn + B = 0
 
 
