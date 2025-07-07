@@ -6,7 +6,7 @@ Python module for analysis of gene sequences.
 
 ## Dataset
 This model requires a gene dataset for the specific organism.
-Dataset can be either presented as a fasta file with gene sequences, or as a .csv file containing three columns: protein ID, expression number, gene sequence. This data format is compatible with the CodonExpressionIndex module https://github.com/conzaytsev/CodonExpressionIndex.
+Dataset can be either presented as a fasta file with a set of gene sequences, or as a .csv file containing three columns: ID, expression number, gene sequence (compatible with the CodonExpressionIndex module https://github.com/conzaytsev/CodonExpressionIndex).
 
 ## Installation
 From PyPI:
@@ -22,18 +22,22 @@ Importing the module:
 
     import genespace
 
-Organism Subspace can be created based on the nucleotide / codon / codon pair frequencies:
-nu is a parameter for the OneClassSVM, which defines the maximum fraction of genes that would not fit inside the subspace.
+Organism specific Subspaces can be created based on the nucleotide / codon / codon pair frequencies:
+nu is a parameter for the OneClassSVM function, which defines the maximum fraction of genes left outside the subspace.
 
     model = genespace.NucleotideSubspace(path_to_dataset, nu=0.1)
+or
     model = genespace.CodonSubspace(path_to_dataset, nu=0.1)
+or
     model = genespace.CodonPairSubspace(path_to_dataset, nu=0.1)
         
-To show the equation for the subspace boundary:
+To get the hyperplane coefficients for the subspace boundary:
+Data format: [[B], [A_1, A2, A3,..., An]] for the hyperplane equation A1X1 + A2X2 + A3X3 + ... + AnXn + B = 0
+
 
     model.hyperplane
         
-Calculate the estimate for the subspace volume:
+Estimate for the subspace volume:
         
     model.volume()
 
