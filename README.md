@@ -8,8 +8,7 @@ Python module for analysis of gene sequences.
 
 
 ## Dataset
-This model requires a gene dataset for the specific organism.
-Dataset can be either presented as a fasta file with a set of gene sequences, or as a .csv file containing three columns: ID, expression number, gene sequence (compatible with the CodonExpressionIndex module https://github.com/conzaytsev/CodonExpressionIndex).
+To train the model for a specific organism, a set of genes from that specific organism is needed. The dataset should be in the FASTA format.
 
 ## Installation
 From PyPI:
