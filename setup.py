@@ -12,7 +12,7 @@ setup(
     install_requires=['scikit-learn', 'numpy'],
     python_requires='>3.9',
     classifiers= [
-        'License :: OSI Approved :: GPL-3.0 License',
+        'License :: OSI Approved :: GNU General Public License v3 (GPLv3)',
         'Programming Language :: Python :: 3'
     ]
 )
