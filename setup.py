@@ -3,7 +3,7 @@ from setuptools import setup
 
 setup(
     name="genespace", 
-    version='0.1.0',
+    version='0.1.1',
     author="Konstantin Zaytsev",
     url='https://github.com/conzaytsev/GeneSpace',
     description='Gene Space',
