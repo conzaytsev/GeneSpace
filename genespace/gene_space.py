@@ -55,7 +55,7 @@ def read_file(filename):
         for i in range(len(data)):
             if i > 0:
                 data_string = data[i].replace('\n', '').split(';')
-                genes.append(data_string[2])
+                genes.append(data_string[-1])
 
     elif filename.split('.')[-1] == 'txt':
         with open(filename, 'r') as file:
@@ -96,12 +96,8 @@ class NucleotideSubspace:
         predictions = list(clf.predict(positions))
         self.probability = predictions.count(1) / len(predictions)
         self.predictions = predictions
-        #self.training_data = genes
 
         self.center = array(coordinates({nucleotide: 1 for nucleotide in nucleotides}))
-        self.distribution = nucleotide_distribution(''.join(genes))
-        self.distances = [self.distance(gene) for gene in genes]
-        self.cds = [self.center_distance(gene) for gene in genes]
 
     def distance(self, sequence):
         return hyperplane_distance(self.hyperplane, coordinates(nucleotide_distribution(sequence)))
@@ -138,12 +134,8 @@ class CodonSubspace:
         predictions = list(clf.predict(positions))
         self.probability = predictions.count(1) / len(predictions)
         self.predictions = predictions
-        #self.training_data = genes
 
         self.center = array(coordinates({triplet: 1 for triplet in triplets}))
-        self.distribution = triplet_distribution(''.join(genes))
-        self.distances = [self.distance(gene) for gene in genes]
-        self.cds = [self.center_distance(gene) for gene in genes]
 
     def distance(self, sequence):
         return hyperplane_distance(self.hyperplane, coordinates(triplet_distribution(sequence)))
@@ -180,12 +172,8 @@ class CodonPairSubspace:
         predictions = list(clf.predict(positions))
         self.probability = predictions.count(1) / len(predictions)
         self.predictions = predictions
-        #self.training_data = genes
 
         self.center = array(coordinates({sixplet: 1 for sixplet in sixplets}))
-        self.distribution = sixplet_distribution(''.join(genes))
-        self.distances = [self.distance(gene) for gene in genes]
-        self.cds = [self.center_distance(gene) for gene in genes]
 
     def distance(self, sequence):
         return hyperplane_distance(self.hyperplane, coordinates(sixplet_distribution(sequence)))
@@ -224,8 +212,7 @@ codon_dictionary = [['TTT', 'TTC'],
                     ['TGT', 'TGC'],
                     ['TGG'],
                     ['CGT', 'CGC', 'CGA', 'CGG', 'AGA', 'AGG'],
-                    ['GGT', 'GGC', 'GGA', 'GGG'],
-                    ['TAA', 'TAG', 'TGA']]  # Stop
+                    ['GGT', 'GGC', 'GGA', 'GGG']]
 
 nucleotides = ['A', 'T', 'G', 'C']
 
