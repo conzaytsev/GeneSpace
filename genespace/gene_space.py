@@ -55,7 +55,7 @@ def read_file(filename):
         for i in range(len(data)):
             if i > 0:
                 data_string = data[i].replace('\n', '').split(';')
-                genes.append(data_string[-1])
+                genes.append(data_string[2])
 
     elif filename.split('.')[-1] == 'txt':
         with open(filename, 'r') as file:
