@@ -8,7 +8,7 @@ Python module for analysis of gene sequences.
 
 
 ## Dataset
-To train the model for a specific organism, a set of genes from that specific organism is needed. The dataset should be in the FASTA format.
+To train the model for a specific organism, a set of genes from that specific organism is needed. The dataset should either be in the FASTA format and contain nucleotide sequences of the genes, or the same csv table can be used as for the [CEI](https://github.com/conzaytsev/CodonExpressionIndex) model.
 
 ## Installation
 From PyPI:
